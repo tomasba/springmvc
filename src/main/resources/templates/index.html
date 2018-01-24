@@ -5,10 +5,26 @@ we define <html xmlns:th="http://www.thymeleaf.org"> -->
 <head lang="en">
 	<title>Sample Spring MVC</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	
+	<!-- the href - it is required if directly trying to render the page in the browser -->
+	<!-- the th:href - the bootstrap brought by webjar dependencies located in project target available in runtime. used 
+	when ran in tomcat -->
+	<link href="http://cdn.jsdelivr.net/webjars/bootstrap/4.0.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+ 
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/3.3.1/jquery.min.js"
+            th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+            
+	<link href="../static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>            
+            
 </head>
 
 <body>
-	<h1>Hello World</h1>
-	<h2>This is Thymeleaf index page.</h2>
+	<div class="container">
+		<h1>Hello World</h1>
+		<h2>This is Thymeleaf index page.</h2>
+	</div>
 </body>
 </html>
