@@ -10,5 +10,5 @@ public interface ProductService {
 	
 	List<Product> findAllProducts();
 
-	Product findProduc(Integer id);
+	Product findProduct(Integer id);
 }

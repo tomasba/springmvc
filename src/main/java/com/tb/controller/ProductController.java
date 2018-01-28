@@ -23,7 +23,7 @@ public class ProductController {
 	
 	@RequestMapping(method=RequestMethod.GET, path="/products/{id}")
 	public String findProduct(@PathVariable Integer id, Model model) {
-		model.addAttribute("product", productService.findProduc(id));
+		model.addAttribute("product", productService.findProduct(id));
 		return "product";
 	}
 	
@@ -38,6 +38,12 @@ public class ProductController {
 		Product saved = productService.saveOrUpdateProduct(product);
 		return "redirect:/products/" + saved.getId();
 	}	
+	
+	@RequestMapping(path="/products/update/{id}")
+	public String editProduct(@PathVariable Integer id, Model model) {		
+		model.addAttribute("product", productService.findProduct(id));
+		return "productform";
+	}
 	
 	@Autowired
 	public void setProductService(ProductService productService) {

@@ -39,7 +39,7 @@ public class ProductServiceMockImpl implements ProductService {
     }    
 	
 	@Override
-	public Product findProduc(Integer id) {
+	public Product findProduct(Integer id) {
 		return products.get(id);
 	}
 	
