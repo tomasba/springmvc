@@ -18,6 +18,11 @@ public class ProductServiceMockImpl implements ProductService {
 	public ProductServiceMockImpl() {
 		loadProducts();
 	}
+
+	@Override
+	public Product findProduc(Integer id) {
+		return products.get(id);
+	}
 	
 	@Override
 	public List<Product> findAllProducts() {
