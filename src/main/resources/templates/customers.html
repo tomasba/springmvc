@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+	<title>Sample Spring MVC</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	
+	<!-- the href - it is required if directly trying to render the page in the browser -->
+	<!-- the th:href - the bootstrap brought by webjar dependencies located in project target available in runtime. used 
+	when ran in tomcat -->
+	<link href="http://cdn.jsdelivr.net/webjars/bootstrap/4.0.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+ 
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/3.3.1/jquery.min.js"
+            th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+            
+	<link href="../static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>                        
+</head>
+
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(customers)}">
+        <h2>Customer List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address Line One</th>
+                <th>Address Line Two</th>
+                <th>City</th>                
+            </tr>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.firstName}"></td>
+                <td th:text="${customer.lastName}"></td>
+                <td th:text="${customer.email}"></td>
+                <td th:text="${customer.phoneNumber}"></td>
+                <td th:text="${customer.addressLineOne}"></td>
+                <td th:text="${customer.addressLineTwo}"></td>
+                <td th:text="${customer.city}"></td>
+                <!-- 
+                <td><a th:href="${'/customers/' + customer.id}">View</a> </td>
+                <td><a th:href="${'/customers/update/' + customer.id}">Edit</a> </td>
+                <td><a th:href="${'/customers/delete/' + customer.id}">Remove</a> </td>
+                 -->
+            </tr>
+        </table>
+        <!-- 
+        <td><a th:href="${'/products/new'}">New Product</a> </td>
+         -->
+    </div>
+</div>
+
+</body>
+</html>
