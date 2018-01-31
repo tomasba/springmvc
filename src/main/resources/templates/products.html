@@ -31,6 +31,7 @@
                 <th>Image URL</th>
                 <th>Details</th>
                 <th>Edit</th>
+                <th>Delete</th>
             </tr>
             <tr th:each="product : ${products}">
                 <td th:text="${product.id}"></td>
@@ -39,6 +40,7 @@
                 <td th:text="${product.imageUrl}"></td>
                 <td><a th:href="${'/products/' + product.id}">View</a> </td>
                 <td><a th:href="${'/products/update/' + product.id}">Edit</a> </td>
+                <td><a th:href="${'/products/delete/' + product.id}">Remove</a> </td>
             </tr>
         </table>
         <td><a th:href="${'/products/new'}">New Product</a> </td>

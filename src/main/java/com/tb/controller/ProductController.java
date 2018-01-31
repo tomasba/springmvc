@@ -45,6 +45,12 @@ public class ProductController {
 		return "productform";
 	}
 	
+	@RequestMapping(path="/products/delete/{id}")
+	public String deleteProduct(@PathVariable Integer id) {
+		productService.deleteProduct(id);
+		return "redirect:/products";
+	}
+	
 	@Autowired
 	public void setProductService(ProductService productService) {
 		this.productService = productService;

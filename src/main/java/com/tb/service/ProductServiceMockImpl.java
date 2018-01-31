@@ -20,6 +20,13 @@ public class ProductServiceMockImpl implements ProductService {
 		loadProducts();
 	}
 
+	@Override
+	public void deleteProduct(Integer id) {	
+		if (products.containsKey(id)) {
+			products.remove(id);
+		}
+	}	
+	
     @Override
     public Product saveOrUpdateProduct(Product product) {
         if (product != null){
