@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.assertj.core.util.Lists;
 import org.springframework.stereotype.Service;
 
 import com.tb.domain.Customer;
@@ -21,7 +20,9 @@ public class CustomerServiceMockImpl implements CustomerService {
 
 	@Override
 	public Customer saveOrUpdateCustomer(Customer customer) {
-		customer.setId(findNextId());
+		if (customer != null && customer.getId() == null) {
+			customer.setId(findNextId());	
+		}		
 		customers.put(customer.getId(), customer);
 		return customer;
 	}

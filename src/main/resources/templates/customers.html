@@ -32,7 +32,11 @@
                 <th>Phone Number</th>
                 <th>Address Line One</th>
                 <th>Address Line Two</th>
-                <th>City</th>                
+                <th>City</th>
+                                
+                <th>Details</th>
+                <th>Update</th>
+                <th>Remove</th>
             </tr>
             <tr th:each="customer : ${customers}">
                 <td th:text="${customer.id}"></td>
@@ -43,16 +47,13 @@
                 <td th:text="${customer.addressLineOne}"></td>
                 <td th:text="${customer.addressLineTwo}"></td>
                 <td th:text="${customer.city}"></td>
-                <!-- 
+                
                 <td><a th:href="${'/customers/' + customer.id}">View</a> </td>
                 <td><a th:href="${'/customers/update/' + customer.id}">Edit</a> </td>
-                <td><a th:href="${'/customers/delete/' + customer.id}">Remove</a> </td>
-                 -->
+                <td><a th:href="${'/customers/delete/' + customer.id}">Remove</a> </td>                 
             </tr>
         </table>
-        <!-- 
-        <td><a th:href="${'/products/new'}">New Product</a> </td>
-         -->
+        <td><a th:href="${'/customers/new'}">New Customer</a> </td>
     </div>
 </div>
 
