@@ -1,8 +1,6 @@
 package com.tb.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -10,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.tb.domain.Customer;
 
 @Service
-public class CustomerServiceMockImpl implements ManagementService<Customer> {
+public class CustomerServiceMockImpl extends AbstractManagementService<Customer> {
 
 	private Map<Integer, Customer> customers = new HashMap<>();
 	
@@ -19,31 +17,8 @@ public class CustomerServiceMockImpl implements ManagementService<Customer> {
 	}
 
 	@Override
-	public Customer saveOrUpdate(Customer customer) {
-		if (customer != null && customer.getId() == null) {
-			customer.setId(findNextId());	
-		}		
-		customers.put(customer.getId(), customer);
-		return customer;
-	}
-
-	private Integer findNextId() {
+	public Integer findNextId() {
 		return customers.size()+1;
-	}
-
-	@Override
-	public List<Customer> findAll() {
-		return new ArrayList<>(customers.values());
-	}
-
-	@Override
-	public Customer find(Integer id) {
-		return customers.get(id);
-	}
-
-	@Override
-	public void delete(Integer id) {
-		customers.remove(id);
 	}
 
 	private void pupulateCustomers() {
@@ -70,5 +45,11 @@ public class CustomerServiceMockImpl implements ManagementService<Customer> {
 		c2.setZipCode("304453");
 		c2.setCity(null);
 		customers.put(c2.getId(), c2);
-	}	
+	}
+
+	@Override
+	public Map<Integer, Customer> getItems() {
+		return customers;
+	}
+
 }

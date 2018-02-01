@@ -1,10 +1,8 @@
 package com.tb.service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -12,49 +10,19 @@ import org.springframework.stereotype.Service;
 import com.tb.domain.Product;
 
 @Service
-public class ProductServiceMockImpl implements ManagementService<Product> {
+public class ProductServiceMockImpl extends AbstractManagementService<Product> {
 
 	private Map<Integer,Product> products;
 	
 	public ProductServiceMockImpl() {
 		loadProducts();
 	}
-
-	@Override
-	public void delete(Integer id) {	
-		if (products.containsKey(id)) {
-			products.remove(id);
-		}
-	}	
-	
-    @Override
-    public Product saveOrUpdate(Product product) {
-        if (product != null){
-            if (product.getId() == null){
-                product.setId(getNextKey());
-            }
-            products.put(product.getId(), product);
-
-            return product;
-        } else {
-            throw new RuntimeException("Product Can't be null");
-        }
-    }	
     
-    private Integer getNextKey(){
+	@Override
+    public Integer findNextId(){
         return Collections.max(products.keySet()) + 1;
     }    
 	
-	@Override
-	public Product find(Integer id) {
-		return products.get(id);
-	}
-	
-	@Override
-	public List<Product> findAll() {
-		return new ArrayList<>(products.values());
-	}
-
     private void loadProducts(){
         products = new HashMap<>();
 
@@ -98,5 +66,10 @@ public class ProductServiceMockImpl implements ManagementService<Product> {
 
         products.put(5, product5);
     }
+
+	@Override
+	public Map<Integer, Product> getItems() {
+		return products;
+	}
 	
 }

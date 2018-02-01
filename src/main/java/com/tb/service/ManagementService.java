@@ -2,7 +2,9 @@ package com.tb.service;
 
 import java.util.List;
 
-public interface ManagementService <T>{
+import com.tb.domain.Item;
+
+public interface ManagementService <T extends Item> {
 
 	T saveOrUpdate(T item);
 	

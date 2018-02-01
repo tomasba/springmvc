@@ -1,8 +1,7 @@
 package com.tb.domain;
 
-public class Customer {
-	
-	private Integer id;
+public class Customer implements Item {
+	private Integer id;		
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -65,12 +64,12 @@ public class Customer {
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 	private String state;
 	private String zipCode;	
 
