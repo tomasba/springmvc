@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.tb.domain.Customer;
 
 @Service
-public class CustomerServiceMockImpl implements CustomerService {
+public class CustomerServiceMockImpl implements ManagementService<Customer> {
 
 	private Map<Integer, Customer> customers = new HashMap<>();
 	
@@ -19,7 +19,7 @@ public class CustomerServiceMockImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer saveOrUpdateCustomer(Customer customer) {
+	public Customer saveOrUpdate(Customer customer) {
 		if (customer != null && customer.getId() == null) {
 			customer.setId(findNextId());	
 		}		
@@ -32,17 +32,17 @@ public class CustomerServiceMockImpl implements CustomerService {
 	}
 
 	@Override
-	public List<Customer> findAllCustomers() {
+	public List<Customer> findAll() {
 		return new ArrayList<>(customers.values());
 	}
 
 	@Override
-	public Customer findCustomer(Integer id) {
+	public Customer find(Integer id) {
 		return customers.get(id);
 	}
 
 	@Override
-	public void deleteCustomer(Integer id) {
+	public void delete(Integer id) {
 		customers.remove(id);
 	}
 

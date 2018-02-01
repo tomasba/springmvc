@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.tb.domain.Product;
 
 @Service
-public class ProductServiceMockImpl implements ProductService {
+public class ProductServiceMockImpl implements ManagementService<Product> {
 
 	private Map<Integer,Product> products;
 	
@@ -21,14 +21,14 @@ public class ProductServiceMockImpl implements ProductService {
 	}
 
 	@Override
-	public void deleteProduct(Integer id) {	
+	public void delete(Integer id) {	
 		if (products.containsKey(id)) {
 			products.remove(id);
 		}
 	}	
 	
     @Override
-    public Product saveOrUpdateProduct(Product product) {
+    public Product saveOrUpdate(Product product) {
         if (product != null){
             if (product.getId() == null){
                 product.setId(getNextKey());
@@ -46,12 +46,12 @@ public class ProductServiceMockImpl implements ProductService {
     }    
 	
 	@Override
-	public Product findProduct(Integer id) {
+	public Product find(Integer id) {
 		return products.get(id);
 	}
 	
 	@Override
-	public List<Product> findAllProducts() {
+	public List<Product> findAll() {
 		return new ArrayList<>(products.values());
 	}
 
