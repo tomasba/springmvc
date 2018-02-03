@@ -42,7 +42,7 @@ public class ProductControllerTest {
 	}
 
 	@Test
-	public void testList() throws Exception {
+	public void souldFindAllProducts() throws Exception {
 		// given
 		List<Product> products = new ArrayList<>();
 		products.add(new Product());
@@ -58,7 +58,7 @@ public class ProductControllerTest {
 	}
 
 	@Test
-	public void testShow() throws Exception {
+	public void shouldFindProductById() throws Exception {
 		// given
 		Integer id = 1;
 		when(productService.find(id)).thenReturn(new Product());
@@ -72,7 +72,7 @@ public class ProductControllerTest {
 	}
 
 	@Test
-	public void testEdit() throws Exception {
+	public void shouldOpenUpdateForm() throws Exception {
 		// given
 		Integer id = 1;
 		when(productService.find(id)).thenReturn(new Product());
@@ -84,10 +84,7 @@ public class ProductControllerTest {
 	}
 
 	@Test
-	public void testNewProduct() throws Exception {
-		// given
-		Integer id = 1;
-		// should not call service
+	public void shouldOpenNewProductForm() throws Exception {
 		verifyZeroInteractions(productService);
 		// when
 		ResultActions result = mockMvc.perform(get("/products/new"));
@@ -97,7 +94,7 @@ public class ProductControllerTest {
 	}
 
 	@Test
-	public void testSaveOrUpdate() throws Exception {
+	public void shouldSaveOrUpdate() throws Exception {
 		Integer id = 1;
 		String description = "Test Description";
 		BigDecimal price = new BigDecimal("12.00");
@@ -129,15 +126,14 @@ public class ProductControllerTest {
 		assertEquals(price, boundProduct.getValue().getPrice());
 		assertEquals(imageUrl, boundProduct.getValue().getImageUrl());
 	}
-	
-	 @Test
-	 public void testDelete() throws Exception{
-	 Integer id = 1;
-	
-	 mockMvc.perform(get("/products/delete/1"))
-	 .andExpect(status().is3xxRedirection())
-	 .andExpect(view().name("redirect:/products"));
-	
-	 verify(productService, times(1)).delete(id);
-	 }
+
+	@Test
+	public void testDelete() throws Exception {
+		Integer id = 1;
+
+		mockMvc.perform(get("/products/delete/1")).andExpect(status().is3xxRedirection())
+				.andExpect(view().name("redirect:/products"));
+
+		verify(productService, times(1)).delete(id);
+	}
 }
