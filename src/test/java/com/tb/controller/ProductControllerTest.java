@@ -7,8 +7,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.tb.api.BaseManagementService;
 import com.tb.domain.Product;
-import com.tb.service.ManagementService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ProductControllerTest {
 
 	@Mock
-	private ManagementService<Product> productService;
+	private BaseManagementService<Product> productService;
 
 	@InjectMocks
 	private ProductController productController;

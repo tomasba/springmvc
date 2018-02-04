@@ -2,41 +2,64 @@ package com.tb.domain;
 
 import java.math.BigDecimal;
 
-public class Product implements Item {
-    private Integer id;
-    private String description;
-    private BigDecimal price;
-    private String imageUrl;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Version;
 
-    public Integer getId() {
-        return id;
-    }
+@Entity
+public class Product implements DomainItem {
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 
-    public String getDescription() {
-        return description;
-    }
+	private String description;
+	private BigDecimal price;
+	private String imageUrl;
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	@Version
+	private Integer version;
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
 }

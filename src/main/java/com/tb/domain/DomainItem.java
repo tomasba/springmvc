@@ -1,6 +1,6 @@
 package com.tb.domain;
 
-public interface Item {
+public interface DomainItem {
 	
 	Integer getId();
 	

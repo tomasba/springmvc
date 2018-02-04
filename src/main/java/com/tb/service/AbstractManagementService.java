@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.tb.domain.Item;
+import com.tb.api.BaseManagementService;
+import com.tb.domain.DomainItem;
 
-public abstract class AbstractManagementService<T extends Item> implements ManagementService <T> {
+public abstract class AbstractManagementService<T extends DomainItem> implements BaseManagementService <T> {	
 	
 	@Override
 	public T saveOrUpdate(T item) {
 		if (item != null && item.getId() == null) {
 			item.setId(findNextId());	
-		}		
+		}						
 		getItems().put(item.getId(), item);
 		return item;
 	}	

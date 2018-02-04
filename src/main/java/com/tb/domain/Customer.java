@@ -1,7 +1,18 @@
 package com.tb.domain;
 
-public class Customer implements Item {
-	private Integer id;		
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Version;
+
+@Entity
+public class Customer implements DomainItem {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer id;
+	
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -9,6 +20,11 @@ public class Customer implements Item {
 	private String addressLineOne;
 	private String addressLineTwo;
 	private String city;
+	private String state;
+	private String zipCode;
+	
+	@Version
+	private Integer version;
 	
 	public String getFirstName() {
 		return firstName;
@@ -70,7 +86,11 @@ public class Customer implements Item {
     public void setId(Integer id) {
         this.id = id;
     }
-	private String state;
-	private String zipCode;	
+	public Integer getVersion() {
+		return version;
+	}
+	public void setVersion(Integer version) {
+		this.version = version;
+	}    	
 
 }

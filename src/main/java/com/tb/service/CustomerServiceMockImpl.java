@@ -3,12 +3,15 @@ package com.tb.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import com.tb.api.CustomerManagementService;
 import com.tb.domain.Customer;
 
-@Service
-public class CustomerServiceMockImpl extends AbstractManagementService<Customer> {
+@Service("customerManagementService")
+@Profile("mock")
+public class CustomerServiceMockImpl extends AbstractManagementService<Customer> implements CustomerManagementService<Customer> {
 
 	private Map<Integer, Customer> customers = new HashMap<>();
 	

@@ -29,13 +29,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.tb.api.BaseManagementService;
 import com.tb.domain.Customer;
-import com.tb.service.ManagementService;
 
 public class CustomerControllerTest {
 
 	@Mock
-	private ManagementService<Customer> customerService;
+	private BaseManagementService<Customer> customerService;
 
 	@InjectMocks
 	private CustomerController customerController;

@@ -5,12 +5,15 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import com.tb.api.ProductManagementService;
 import com.tb.domain.Product;
 
-@Service
-public class ProductServiceMockImpl extends AbstractManagementService<Product> {
+@Service("productManagementService")
+@Profile("mock")
+public class ProductServiceMockImpl extends AbstractManagementService<Product> implements ProductManagementService<Product> {
 
 	private Map<Integer,Product> products;
 	
