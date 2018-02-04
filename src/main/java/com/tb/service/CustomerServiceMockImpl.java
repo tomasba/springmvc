@@ -11,7 +11,7 @@ import com.tb.domain.Customer;
 
 @Service("customerManagementService")
 @Profile("mock")
-public class CustomerServiceMockImpl extends AbstractManagementService<Customer> implements CustomerManagementService<Customer> {
+public class CustomerServiceMockImpl extends AbstractManagementService<Customer> implements CustomerManagementService {
 
 	private Map<Integer, Customer> customers = new HashMap<>();
 	

@@ -11,7 +11,7 @@ import com.tb.domain.Customer;
 
 @Service("customerManagementService")
 @Profile("jpadao")
-public class CustomerServiceJpaDaoImpl extends AbstractJpaDaoImpl<Customer> implements CustomerManagementService<Customer>{
+public class CustomerServiceJpaDaoImpl extends AbstractJpaDaoImpl<Customer> implements CustomerManagementService{
 
 //	@Override
 //	public Customer saveOrUpdate(Customer item) {

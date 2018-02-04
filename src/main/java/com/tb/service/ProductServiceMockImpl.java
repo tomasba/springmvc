@@ -13,7 +13,7 @@ import com.tb.domain.Product;
 
 @Service("productManagementService")
 @Profile("mock")
-public class ProductServiceMockImpl extends AbstractManagementService<Product> implements ProductManagementService<Product> {
+public class ProductServiceMockImpl extends AbstractManagementService<Product> implements ProductManagementService {
 
 	private Map<Integer,Product> products;
 	

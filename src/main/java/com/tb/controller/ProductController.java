@@ -15,7 +15,7 @@ import com.tb.domain.Product;
 @RequestMapping(path="/products")
 public class ProductController {
 		
-	private ProductManagementService<Product> productManagementService;	
+	private ProductManagementService productManagementService;	
 
 	@RequestMapping(method=RequestMethod.GET)
 	public String findAllProducts(Model model) {
@@ -53,9 +53,8 @@ public class ProductController {
 		return "redirect:/products";
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" }) // autowire injection fails with generics applied
 	@Autowired
-	@Qualifier("productManagementService")
+	//@Qualifier("productManagementService")
 	public void setProductManagementService(ProductManagementService productManagementService) {
 		this.productManagementService = productManagementService;
 	}

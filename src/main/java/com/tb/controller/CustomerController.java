@@ -14,7 +14,7 @@ import com.tb.domain.Customer;
 @Controller
 public class CustomerController {
 	
-	private CustomerManagementService<Customer> customerManagementService;
+	private CustomerManagementService customerManagementService;
 
 	@RequestMapping(method=RequestMethod.GET, path="/customers/new")
 	public String createCustomer(Model model) {
@@ -52,9 +52,8 @@ public class CustomerController {
 		return "redirect:/customers/";
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" }) // autowire injection fails with generics applied
 	@Autowired
-	@Qualifier("customerManagementService")
+	//@Qualifier("customerManagementService")
 	public void setCustomerManagementService(CustomerManagementService customerManagementService) {
 		this.customerManagementService = customerManagementService;
 	}

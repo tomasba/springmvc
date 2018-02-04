@@ -1,7 +1,7 @@
 package com.tb.api;
 
-import com.tb.domain.DomainItem;
+import com.tb.domain.Product;
 
-public interface ProductManagementService<T extends DomainItem> extends BaseManagementService<T> {
+public interface ProductManagementService extends BaseManagementService<Product> {
 
 }
