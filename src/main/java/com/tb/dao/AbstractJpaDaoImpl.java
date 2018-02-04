@@ -39,10 +39,11 @@ public abstract class AbstractJpaDaoImpl <T extends DomainItem> implements BaseM
 	@Override
 	public void delete(Integer id) {
 		T item = null;
-		if ((item = getEntityManager().find(getEntityClass(), id)) != null) {
-			getEntityManager().getTransaction().begin();
-			getEntityManager().remove(item);
-			getEntityManager().getTransaction().commit();
+		EntityManager em = getEntityManager();
+		if ((item = em.find(getEntityClass(), id)) != null) {
+			em.getTransaction().begin();
+			em.remove(item);
+			em.getTransaction().commit();
 		}
 	}	
 	
