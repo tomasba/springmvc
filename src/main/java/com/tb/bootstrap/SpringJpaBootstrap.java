@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.tb.api.CustomerManagementService;
 import com.tb.api.ProductManagementService;
+import com.tb.api.UserManagementService;
 import com.tb.domain.Customer;
 import com.tb.domain.Product;
 import com.tb.domain.User;
@@ -17,7 +18,8 @@ import com.tb.domain.User;
 public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedEvent>{
 
 	private ProductManagementService productManagementService; 
-	private CustomerManagementService customerManagementService; 
+	private CustomerManagementService customerManagementService;
+	private UserManagementService userManagementService;
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent e) {
@@ -61,6 +63,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 		u1.setEnabled(Boolean.TRUE);
 		u1.setUsername("customer1 user1");
 		u1.setPassword("customer1 user1");
+		u1 = userManagementService.saveOrUpdate(u1);
 		c1.setUser(u1);
 		
 		Customer c2 = new Customer();
@@ -77,6 +80,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 		u2.setEnabled(Boolean.TRUE);
 		u2.setUsername("customer2 user2");
 		u2.setPassword("customer2 user2");
+		u2 = userManagementService.saveOrUpdate(u2);
 		c2.setUser(u2);		
 		
 		customerManagementService.saveOrUpdate(c1);
@@ -91,6 +95,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 	@Autowired
 	public void setCustomerManagementService(CustomerManagementService customerManagementService) {
 		this.customerManagementService = customerManagementService;
+	}
+
+	@Autowired
+	public void setUserManagementService(UserManagementService userManagementService) {
+		this.userManagementService = userManagementService;
 	}
 
 }

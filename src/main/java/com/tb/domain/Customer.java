@@ -1,6 +1,5 @@
 package com.tb.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +24,7 @@ public class Customer implements DomainItem {
 	private String state;
 	private String zipCode;
 	
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne
     private User user;	
 	
 	@Version
