@@ -1,9 +1,11 @@
 package com.tb.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 @Entity
@@ -23,8 +25,11 @@ public class Customer implements DomainItem {
 	private String state;
 	private String zipCode;
 	
+    @OneToOne(cascade = {CascadeType.ALL})
+    private User user;	
+	
 	@Version
-	private Integer version;
+	private Integer version;	
 	
 	public String getFirstName() {
 		return firstName;
@@ -91,6 +96,12 @@ public class Customer implements DomainItem {
 	}
 	public void setVersion(Integer version) {
 		this.version = version;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}    	
 
 }

@@ -11,6 +11,7 @@ import com.tb.api.CustomerManagementService;
 import com.tb.api.ProductManagementService;
 import com.tb.domain.Customer;
 import com.tb.domain.Product;
+import com.tb.domain.User;
 
 @Component
 public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedEvent>{
@@ -56,7 +57,12 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 		c1.setPhoneNumber("370111444555");
 		c1.setState("cusct1 state");
 		c1.setZipCode("cust1 zip");
-
+		User u1 = new User();
+		u1.setEnabled(Boolean.TRUE);
+		u1.setUsername("customer1 user1");
+		u1.setPassword("customer1 user1");
+		c1.setUser(u1);
+		
 		Customer c2 = new Customer();
 		c2.setAddressLineOne("addr line 1 c2");
 		c2.setAddressLineTwo("addr line 2 c2");
@@ -67,6 +73,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 		c2.setPhoneNumber("370111422222");
 		c2.setState("cusct2 state");
 		c2.setZipCode("cust2 zip");
+		User u2 = new User();
+		u2.setEnabled(Boolean.TRUE);
+		u2.setUsername("customer2 user2");
+		u2.setPassword("customer2 user2");
+		c2.setUser(u2);		
 		
 		customerManagementService.saveOrUpdate(c1);
 		customerManagementService.saveOrUpdate(c2);

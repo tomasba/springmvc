@@ -1,13 +1,17 @@
 package com.tb.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.tb.api.BaseManagementService;
+import com.tb.domain.Customer;
 import com.tb.domain.DomainItem;
 
 public abstract class AbstractManagementService<T extends DomainItem> implements BaseManagementService <T> {	
+	
+	private Map<Integer, T> items = new HashMap<>();
 	
 	@Override
 	public T saveOrUpdate(T item) {
@@ -33,8 +37,12 @@ public abstract class AbstractManagementService<T extends DomainItem> implements
 		getItems().remove(id);
 	}
 
-	public abstract Map<Integer, T> getItems();
+	public Map<Integer, T> getItems() {
+		return items;
+	}
 	
-	public abstract Integer findNextId();
+	public Integer findNextId() {
+		return items.size() + 1;		
+	}
 	
 }

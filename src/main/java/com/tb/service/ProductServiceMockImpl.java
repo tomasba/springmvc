@@ -21,10 +21,10 @@ public class ProductServiceMockImpl extends AbstractManagementService<Product> i
 		loadProducts();
 	}
     
-	@Override
-    public Integer findNextId(){
-        return Collections.max(products.keySet()) + 1;
-    }    
+//	@Override
+//    public Integer findNextId(){
+//        return Collections.max(products.keySet()) + 1;
+//    }    
 	
     private void loadProducts(){
         products = new HashMap<>();
@@ -70,9 +70,9 @@ public class ProductServiceMockImpl extends AbstractManagementService<Product> i
         products.put(5, product5);
     }
 
-	@Override
-	public Map<Integer, Product> getItems() {
-		return products;
-	}
+//	@Override
+//	public Map<Integer, Product> getItems() {
+//		return products;
+//	}
 	
 }

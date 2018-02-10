@@ -8,21 +8,22 @@ import org.springframework.stereotype.Service;
 
 import com.tb.api.CustomerManagementService;
 import com.tb.domain.Customer;
+import com.tb.domain.User;
 
 @Service("customerManagementService")
 @Profile("mock")
 public class CustomerServiceMockImpl extends AbstractManagementService<Customer> implements CustomerManagementService {
 
-	private Map<Integer, Customer> customers = new HashMap<>();
+	//private Map<Integer, Customer> customers = new HashMap<>();
 	
 	public CustomerServiceMockImpl() {
 		pupulateCustomers();
 	}
 
-	@Override
-	public Integer findNextId() {
-		return customers.size()+1;
-	}
+//	@Override
+//	public Integer findNextId() {
+//		return customers.size()+1;
+//	}
 
 	private void pupulateCustomers() {
 		Customer c1 = new Customer();
@@ -35,7 +36,12 @@ public class CustomerServiceMockImpl extends AbstractManagementService<Customer>
 		c1.setState("CA");
 		c1.setZipCode("204454");
 		c1.setCity("Vilnius");
-		customers.put(c1.getId(), c1);
+		User u1 = new User();
+		u1.setEnabled(Boolean.TRUE);
+		u1.setUsername("customer1 user1");
+		u1.setPassword("customer1 user1");
+		c1.setUser(u1);		
+		getItems().put(c1.getId(), c1);
 		
 		Customer c2 = new Customer();
 		c2.setId(findNextId());
@@ -47,12 +53,17 @@ public class CustomerServiceMockImpl extends AbstractManagementService<Customer>
 		c2.setState("LA");
 		c2.setZipCode("304453");
 		c2.setCity(null);
-		customers.put(c2.getId(), c2);
+		User u2 = new User();
+		u2.setEnabled(Boolean.TRUE);
+		u2.setUsername("customer2 user2");
+		u2.setPassword("customer2 user2");
+		c2.setUser(u2);		
+		getItems().put(c2.getId(), c2);
 	}
 
-	@Override
-	public Map<Integer, Customer> getItems() {
-		return customers;
-	}
+//	@Override
+//	public Map<Integer, Customer> getItems() {
+//		return customers;
+//	}
 
 }
