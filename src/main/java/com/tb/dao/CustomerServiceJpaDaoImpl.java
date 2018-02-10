@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service;
 import com.tb.api.CustomerManagementService;
 import com.tb.domain.Customer;
 
-@Service("customerManagementService")
+@Service
+//@Service("customerManagementService")
 @Profile("jpadao")
 public class CustomerServiceJpaDaoImpl extends AbstractJpaDaoImpl<Customer> implements CustomerManagementService{
 

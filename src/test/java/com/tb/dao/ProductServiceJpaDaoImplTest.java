@@ -31,7 +31,7 @@ public class ProductServiceJpaDaoImplTest {
 		List<Product> result = productManagementService.findAll();
 		
 		assertThat(result, notNullValue());
-		assertThat(result.size(), equalTo(3));
+		assertThat(result.size(), equalTo(2));
 	}
 	
 	@Test

@@ -10,7 +10,8 @@ import com.tb.api.CustomerManagementService;
 import com.tb.domain.Customer;
 import com.tb.domain.User;
 
-@Service("customerManagementService")
+@Service
+//@Service("customerManagementService")
 @Profile("mock")
 public class CustomerServiceMockImpl extends AbstractManagementService<Customer> implements CustomerManagementService {
 

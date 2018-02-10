@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 import com.tb.api.UserManagementService;
 import com.tb.domain.User;
 
-@Service("userService")
+@Service
+//@Service("userService")
 @Profile("mock")
 public class UserServiceMockImpl extends AbstractManagementService<User> implements UserManagementService {
 

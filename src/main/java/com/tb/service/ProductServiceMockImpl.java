@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 import com.tb.api.ProductManagementService;
 import com.tb.domain.Product;
 
-@Service("productManagementService")
+@Service
+//@Service("productManagementService")
 @Profile("mock")
 public class ProductServiceMockImpl extends AbstractManagementService<Product> implements ProductManagementService {
 

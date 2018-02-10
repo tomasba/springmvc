@@ -87,19 +87,14 @@ public class UserServiceJpaDaoImplTest {
         
         // when
         User savedUser = userService.saveOrUpdate(user);
-        
+
+        // then
         // as customer keeps back reference to user we are not allowed to delete the user containing the customer.
         // !!! constraint violation would happen !!!
         // @see setCustomer in User
         // userService.delete(savedUser.getId());
-        
-        // then
-        assert userService.find(savedUser.getId()) != null;
-        Customer savedUserCustomer = customerService.find(savedUser.getCustomer().getId());
-        assert savedUserCustomer != null;
-        assert savedUserCustomer.getUser() == null;
-    }    
-    
+    }
+
     @Autowired
     public void setUserService(UserManagementService userService) {
         this.userService = userService;

@@ -29,16 +29,16 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.tb.api.BaseManagementService;
+import com.tb.api.CustomerManagementService;
 import com.tb.domain.Customer;
 
 public class CustomerControllerTest {
 
 	@Mock
-	private BaseManagementService<Customer> customerService;
+	private CustomerManagementService customerManagementService;
 
 	@InjectMocks
-	private CustomerController customerController;
+	private CustomerController customerController;	
 
 	private MockMvc mockMvc;
 
@@ -55,7 +55,8 @@ public class CustomerControllerTest {
 		List<Customer> customers = Lists.newArrayList();
 		Customer c1 = new Customer();
 		customers.add(c1);
-		given(customerService.findAll()).willReturn(customers);
+		//given(customerService.findAll()).willReturn(customers);
+		given(customerManagementService.findAll()).willReturn(customers);
 
 		// when
 		ResultActions result = mockMvc.perform(get("/customers/"));
@@ -65,14 +66,14 @@ public class CustomerControllerTest {
 				.andExpect(model().attributeExists("customers"))
 				.andExpect(model().attribute("customers", IsCollectionWithSize.hasSize(1)));
 
-		verify(customerService, times(1)).findAll();
+		verify(customerManagementService, times(1)).findAll();
 	}
 
 	@Test
 	public void shouldFindCustomerById() throws Exception {
 		// given
 		Customer customer = new Customer();
-		given(customerService.find(1)).willReturn(customer);
+		given(customerManagementService.find(1)).willReturn(customer);
 
 		// when
 		ResultActions result = mockMvc.perform(get("/customers/1"));
@@ -82,7 +83,7 @@ public class CustomerControllerTest {
 				.andExpect(model().attributeExists("customer"))
 				.andExpect(model().attribute("customer", instanceOf(Customer.class)))
 				.andExpect(model().attribute("customer", customer));
-		verify(customerService).find(1);
+		verify(customerManagementService).find(1);
 	}
 
 	@Test
@@ -110,7 +111,7 @@ public class CustomerControllerTest {
 		customer.setState(state);
 		customer.setZipCode(zipCode);
 
-		when(customerService.saveOrUpdate(Matchers.<Customer>any())).thenReturn(customer);
+		when(customerManagementService.saveOrUpdate(Matchers.<Customer>any())).thenReturn(customer);
 
 		mockMvc.perform(post("/customers").param("id", "1").param("addressLineOne", addressLineOne)
 				.param("addressLineTwo", addressLineTwo).param("city", city).param("email", email)
@@ -131,7 +132,7 @@ public class CustomerControllerTest {
 
 		// verify properties of bound object
 		ArgumentCaptor<Customer> boundProduct = ArgumentCaptor.forClass(Customer.class);
-		verify(customerService).saveOrUpdate(boundProduct.capture());
+		verify(customerManagementService).saveOrUpdate(boundProduct.capture());
 
 		assertThat(id, equalTo(boundProduct.getValue().getId()));
 		assertThat(addressLineOne, equalTo(boundProduct.getValue().getAddressLineOne()));
