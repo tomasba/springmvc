@@ -86,7 +86,8 @@ public class User implements DomainItem {
 	}
 
 	public void setCustomer(Customer customer) {
-		this.customer = customer;		
+		this.customer = customer;
+		this.customer.setUser(this);
 	}
 
 }
