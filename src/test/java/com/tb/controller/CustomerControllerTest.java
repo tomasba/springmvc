@@ -30,6 +30,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.tb.api.CustomerManagementService;
+import com.tb.domain.Address;
 import com.tb.domain.Customer;
 
 public class CustomerControllerTest {
@@ -101,15 +102,18 @@ public class CustomerControllerTest {
 
 		Customer customer = new Customer();
 		customer.setId(id);
-		customer.setAddressLineOne(addressLineOne);
-		customer.setAddressLineTwo(addressLineTwo);
-		customer.setCity(city);
+		Address addr = new Address();
+		addr.setAddressLineOne(addressLineOne);
+		addr.setAddressLineTwo(addressLineTwo);
+		addr.setCity(city);
+		addr.setState(state);
+		addr.setZipCode(zipCode);
+		customer.setBillingAddress(addr);
+		customer.setShippingAddress(addr);
 		customer.setEmail(email);
 		customer.setFirstName(firstName);
 		customer.setLastName(lastName);
 		customer.setPhoneNumber(phoneNumber);
-		customer.setState(state);
-		customer.setZipCode(zipCode);
 
 		when(customerManagementService.saveOrUpdate(Matchers.<Customer>any())).thenReturn(customer);
 
@@ -135,14 +139,23 @@ public class CustomerControllerTest {
 		verify(customerManagementService).saveOrUpdate(boundProduct.capture());
 
 		assertThat(id, equalTo(boundProduct.getValue().getId()));
-		assertThat(addressLineOne, equalTo(boundProduct.getValue().getAddressLineOne()));
-		assertThat(addressLineTwo, equalTo(boundProduct.getValue().getAddressLineTwo()));
-		assertThat(city, equalTo(boundProduct.getValue().getCity()));
+		
+		assertThat(addressLineOne, equalTo(boundProduct.getValue().getShippingAddress().getAddressLineOne()));
+		assertThat(addressLineTwo, equalTo(boundProduct.getValue().getShippingAddress().getAddressLineTwo()));
+		assertThat(city, equalTo(boundProduct.getValue().getShippingAddress().getCity()));
+		assertThat(state, equalTo(boundProduct.getValue().getShippingAddress().getState()));
+		assertThat(zipCode, equalTo(boundProduct.getValue().getShippingAddress().getZipCode()));		
+		
+		assertThat(addressLineOne, equalTo(boundProduct.getValue().getBillingAddress().getAddressLineOne()));
+		assertThat(addressLineTwo, equalTo(boundProduct.getValue().getBillingAddress().getAddressLineTwo()));
+		assertThat(city, equalTo(boundProduct.getValue().getBillingAddress().getCity()));
+		assertThat(state, equalTo(boundProduct.getValue().getBillingAddress().getState()));
+		assertThat(zipCode, equalTo(boundProduct.getValue().getBillingAddress().getZipCode()));		
+		
 		assertThat(email, equalTo(boundProduct.getValue().getEmail()));
 		assertThat(firstName, equalTo(boundProduct.getValue().getFirstName()));
 		assertThat(lastName, equalTo(boundProduct.getValue().getLastName()));
 		assertThat(phoneNumber, equalTo(boundProduct.getValue().getPhoneNumber()));
-		assertThat(state, equalTo(boundProduct.getValue().getState()));
-		assertThat(zipCode, equalTo(boundProduct.getValue().getZipCode()));
+
 	}
 }

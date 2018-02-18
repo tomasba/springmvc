@@ -1,12 +1,10 @@
 package com.tb.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.tb.api.CustomerManagementService;
+import com.tb.domain.Address;
 import com.tb.domain.Customer;
 import com.tb.domain.User;
 
@@ -31,12 +29,15 @@ public class CustomerServiceMockImpl extends AbstractManagementService<Customer>
 		c1.setId(findNextId());
 		c1.setFirstName("Tomas");
 		c1.setLastName("Tomaitis");
-		c1.setAddressLineOne("Šermukšnių 12-5");
-		c1.setAddressLineTwo(null);c1.setEmail("t@t.lt");
 		c1.setPhoneNumber("+37060300000");
-		c1.setState("CA");
-		c1.setZipCode("204454");
-		c1.setCity("Vilnius");
+		Address addrC1 = new Address();
+		addrC1.setAddressLineOne("Šermukšnių 12-5");
+		addrC1.setAddressLineTwo(null);c1.setEmail("t@t.lt");		
+		addrC1.setState("CA");
+		addrC1.setZipCode("204454");
+		addrC1.setCity("Vilnius");
+		c1.setBillingAddress(addrC1);
+		c1.setShippingAddress(addrC1);
 		User u1 = new User();
 		u1.setEnabled(Boolean.TRUE);
 		u1.setUsername("customer1 user1");
@@ -48,12 +49,15 @@ public class CustomerServiceMockImpl extends AbstractManagementService<Customer>
 		c2.setId(findNextId());
 		c2.setFirstName("Jonas");
 		c2.setLastName("Jonaitis");
-		c2.setAddressLineOne("Girulių 45");
-		c2.setAddressLineTwo(null);c1.setEmail("j@j.lt");
-		c2.setPhoneNumber("+37060300001");
-		c2.setState("LA");
-		c2.setZipCode("304453");
-		c2.setCity(null);
+		c2.setPhoneNumber("+37060300001");		
+		Address addrC2 = new Address();
+		addrC2.setAddressLineOne("Girulių 45");
+		addrC2.setAddressLineTwo(null);c1.setEmail("j@j.lt");
+		addrC2.setState("LA");
+		addrC2.setZipCode("304453");
+		addrC2.setCity(null);
+		c2.setBillingAddress(addrC2);
+		c2.setShippingAddress(addrC2);
 		User u2 = new User();
 		u2.setEnabled(Boolean.TRUE);
 		u2.setUsername("customer2 user2");

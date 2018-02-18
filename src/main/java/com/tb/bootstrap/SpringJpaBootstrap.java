@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.tb.api.CustomerManagementService;
 import com.tb.api.ProductManagementService;
 import com.tb.api.UserManagementService;
+import com.tb.domain.Address;
 import com.tb.domain.Customer;
 import com.tb.domain.Product;
 import com.tb.domain.User;
@@ -50,15 +51,18 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 	
 	private void createCustomers() {
 		Customer c1 = new Customer();
-		c1.setAddressLineOne("addr line 1 c1");
-		c1.setAddressLineTwo("addr line 2 c1");
-		c1.setCity("addr 1 city");
+		Address addrC1 = new Address();
+		addrC1.setAddressLineOne("addr line 1 c1");
+		addrC1.setAddressLineTwo("addr line 2 c1");
+		addrC1.setState("cusct1 state");
+		addrC1.setZipCode("cust1 zip");
+		addrC1.setCity("addr 1 city");		
+		c1.setShippingAddress(addrC1);
+		c1.setBillingAddress(addrC1);
 		c1.setEmail("adr1email");
 		c1.setFirstName("Customer1 Name");
 		c1.setLastName("Customer 1 last name");
 		c1.setPhoneNumber("370111444555");
-		c1.setState("cusct1 state");
-		c1.setZipCode("cust1 zip");
 		User u1 = new User();
 		u1.setEnabled(Boolean.TRUE);
 		u1.setUsername("customer1 user1");
@@ -67,15 +71,18 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 		c1.setUser(u1);
 		
 		Customer c2 = new Customer();
-		c2.setAddressLineOne("addr line 1 c2");
-		c2.setAddressLineTwo("addr line 2 c2");
-		c2.setCity("addr 2 city");
+		Address addrC2 = new Address();		
+		addrC2.setAddressLineOne("addr line 1 c2");
+		addrC2.setAddressLineTwo("addr line 2 c2");
+		addrC2.setCity("addr 2 city");
+		addrC2.setState("cusct2 state");
+		addrC2.setZipCode("cust2 zip");		
+		c2.setShippingAddress(addrC2);
+		c2.setBillingAddress(addrC2);
 		c2.setEmail("adr2email");
 		c2.setFirstName("Customer2 Name");
 		c2.setLastName("Customer 2 last name");
 		c2.setPhoneNumber("370111422222");
-		c2.setState("cusct2 state");
-		c2.setZipCode("cust2 zip");
 		User u2 = new User();
 		u2.setEnabled(Boolean.TRUE);
 		u2.setUsername("customer2 user2");

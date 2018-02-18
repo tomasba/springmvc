@@ -2,6 +2,7 @@ package com.tb.domain;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Version;
 
 @Entity
-public class Product implements DomainItem {
+public class Product extends BaseEntity implements DomainItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +22,7 @@ public class Product implements DomainItem {
 
 	@Version
 	private Integer version;
-
+	
 	public Integer getId() {
 		return id;
 	}

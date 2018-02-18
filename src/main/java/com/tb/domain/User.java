@@ -10,7 +10,7 @@ import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
-public class User implements DomainItem {
+public class User extends BaseEntity implements DomainItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,7 +29,7 @@ public class User implements DomainItem {
     private Boolean enabled = true;
 
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Customer customer;    
+    private Customer customer;           
     
     @Override
     public Integer getId() {

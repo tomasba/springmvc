@@ -1,5 +1,9 @@
 package com.tb.domain;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,15 +22,31 @@ public class Customer implements DomainItem {
 	private String lastName;
 	private String email;
 	private String phoneNumber;
-	private String addressLineOne;
-	private String addressLineTwo;
-	private String city;
-	private String state;
-	private String zipCode;
 	
     @OneToOne
     private User user;	
-	
+// commented out as spring.jpa.hibernate.naming.implicit-strategy property used instead	
+//    @AttributeOverrides({
+//        @AttributeOverride(name = "addressLineOne", column = @Column(name = "BILLING_ADDR1")),
+//        @AttributeOverride(name = "addressLineTwo", column = @Column(name = "BILLING_ADDR2")),
+//        @AttributeOverride(name = "city", column = @Column(name = "BILLING_CITY")),
+//        @AttributeOverride(name = "state", column = @Column(name = "BILLING_STATE")),
+//        @AttributeOverride(name = "zipCode", column = @Column(name = "BILLING_ZIPCODE"))
+//    })
+    @Embedded
+    private Address billingAddress;    
+    
+// commented out as spring.jpa.hibernate.naming.implicit-strategy property used instead    
+//    @AttributeOverrides({
+//        @AttributeOverride(name = "addressLineOne", column = @Column(name = "SHIPPING_ADDR1")),
+//        @AttributeOverride(name = "addressLineTwo", column = @Column(name = "SHIPPING_ADDR2")),
+//        @AttributeOverride(name = "city", column = @Column(name = "SHIPPING_CITY")),
+//        @AttributeOverride(name = "state", column = @Column(name = "SHIPPING_STATE")),
+//        @AttributeOverride(name = "zipCode", column = @Column(name = "SHIPPING_ZIPCODE"))
+//    })    
+    @Embedded
+    private Address shippingAddress;    
+    
 	@Version
 	private Integer version;	
 	
@@ -54,36 +74,7 @@ public class Customer implements DomainItem {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public String getAddressLineOne() {
-		return addressLineOne;
-	}
-	public void setAddressLineOne(String addressLineOne) {
-		this.addressLineOne = addressLineOne;
-	}
-	public String getAddressLineTwo() {
-		return addressLineTwo;
-	}
-	public void setAddressLineTwo(String addressLineTwo) {
-		this.addressLineTwo = addressLineTwo;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public String getZipCode() {
-		return zipCode;
-	}
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
+
     public Integer getId() {
         return id;
     }
@@ -101,6 +92,18 @@ public class Customer implements DomainItem {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public Address getBillingAddress() {
+		return billingAddress;
+	}
+	public void setBillingAddress(Address billingAddress) {
+		this.billingAddress = billingAddress;
+	}
+	public Address getShippingAddress() {
+		return shippingAddress;
+	}
+	public void setShippingAddress(Address shippingAddress) {
+		this.shippingAddress = shippingAddress;
 	}    	
 
 }
